@@ -17,22 +17,10 @@ export default function Header() {
         alt="Twitter Logo"
         rel="noreferrer"
       >
-        <Image
-          height="20"
-          width="20"
-          alt="next"
-          src="/twitter.svg"
-          className={styles.twitter}
-        />
+        <Image height="20" width="20" alt="next" src="/twitter.svg" />
       </a>
       <a href={GITHUB_LINK} target="_blank" alt="Github Logo" rel="noreferrer">
-        <Image
-          height="20"
-          width="20"
-          alt="next"
-          src="/github.svg"
-          className={styles.github}
-        />
+        <Image height="20" width="20" alt="next" src="/github.svg" />
       </a>
     </div>
   );

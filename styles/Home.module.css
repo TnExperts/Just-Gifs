@@ -144,7 +144,7 @@
   height: 100vh;
 }
 
-.authed-container {
+.authed_container {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -178,10 +178,11 @@
   -webkit-text-fill-color: transparent;
 }
 
-.cta-button {
+.cta_button {
   height: 45px;
   border: 0;
   width: auto;
+  margin-top: 50px;
   padding-left: 40px;
   padding-right: 40px;
   border-radius: 10px;
@@ -191,10 +192,16 @@
   color: white;
 }
 
-.connect-wallet-button {
-  background: -webkit-linear-gradient(left, #60c657, #35aee2);
+.connect_wallet_button {
+  background: -webkit-linear-gradient(left, #479e3f, #35aee2);
   background-size: 200% 200%;
-  animation: gradient-animation 4s ease infinite;
+
+  /* background: -webkit-linear-gradient(left, #861657, #ffa69e); */
+  /* background-color: #861657;
+  background-image: linear-gradient(326deg, #861657 0%, #ffa69e 74%); */
+
+  /* background-color: #1fd1f9;
+  background-image: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%); */
 }
 
 .submit-gif-button {
