@@ -4,7 +4,7 @@ import styles from '../../styles/Home.module.css';
 // Constants
 const HANDLE = 'tapabratadey';
 const TWITTER_LINK = `https://twitter.com/${HANDLE}`;
-const GITHUB_LINK = `https://twitter.com/${HANDLE}`;
+const GITHUB_LINK = `https://github.com/${HANDLE}`;
 
 export default function Header() {
   return (
