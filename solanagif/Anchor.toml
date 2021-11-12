@@ -1,0 +1,12 @@
+[programs.localnet]
+solanagif = "Bg6ant5paDG4quk5kte5ZpNiYc7s8J3F2AJcJrGnjVB9"
+
+[registry]
+url = "https://anchor.projectserum.com"
+
+[provider]
+cluster = "localnet"
+wallet = "/Users/tapabratadey/.config/solana/id.json"
+
+[scripts]
+test = "yarn run mocha -t 1000000 tests/"
