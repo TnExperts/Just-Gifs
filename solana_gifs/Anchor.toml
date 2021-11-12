@@ -1,0 +1,12 @@
+[programs.localnet]
+solana_gifs = "6H7eZvER3DzTVb1JReNNDwJunDWBGypFjQ8TqbkTK5w6"
+
+[registry]
+url = "https://anchor.projectserum.com"
+
+[provider]
+cluster = "localnet"
+wallet = "/Users/tapabratadey/.config/solana/id.json"
+
+[scripts]
+test = "yarn run mocha -t 1000000 tests/"

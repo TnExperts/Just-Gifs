@@ -10,27 +10,25 @@ import Main from './components/main';
 import { useEffect, useState } from 'react';
 
 const TEST_GIFs = [
-  'https://i.giphy.com/media/eIG0HfouRQJQr1wBzz/giphy.webp',
-  'https://media3.giphy.com/media/L71a8LW2UrKwPaWNYM/giphy.gif?cid=ecf05e47rr9qizx2msjucl1xyvuu47d7kf25tqt2lvo024uo&rid=giphy.gif&ct=g',
+  'https://media.giphy.com/media/IwAZ6dvvvaTtdI8SD5/giphy.gif',
+  'https://media.giphy.com/media/EkO6UqwhwcKFqEYXQO/giphy.gif',
+  'https://media.giphy.com/media/qOhzfrkMzQO8U/giphy.gif',
+  'https://media.giphy.com/media/n71ex8ztZnhao/giphy.gif',
+  'https://media.giphy.com/media/7hY945na01sbV4yqgR/giphy.gif',
+  'https://media.giphy.com/media/SXZyXeDrorHKJ5vvWY/giphy.gif',
+  'https://media.giphy.com/media/e7Fwo2ddFgjf8XsI0N/giphy.gif',
+  'https://media.giphy.com/media/CuKEZdZ3V01gI/giphy.gif',
+  'https://media.giphy.com/media/l46Cgctdy5C23iB0c/giphy.gif',
+  'https://media.giphy.com/media/l3HBbltOYjoNq/giphy.gif',
   'https://media4.giphy.com/media/AeFmQjHMtEySooOc8K/giphy.gif?cid=ecf05e47qdzhdma2y3ugn32lkgi972z9mpfzocjj6z1ro4ec&rid=giphy.gif&ct=g',
-  'https://i.giphy.com/media/PAqjdPkJLDsmBRSYUp/giphy.webp',
-  'https://i.giphy.com/media/eIG0HfouRQJQr1wBzz/giphy.webp',
-  'https://media3.giphy.com/media/L71a8LW2UrKwPaWNYM/giphy.gif?cid=ecf05e47rr9qizx2msjucl1xyvuu47d7kf25tqt2lvo024uo&rid=giphy.gif&ct=g',
-  'https://media4.giphy.com/media/AeFmQjHMtEySooOc8K/giphy.gif?cid=ecf05e47qdzhdma2y3ugn32lkgi972z9mpfzocjj6z1ro4ec&rid=giphy.gif&ct=g',
-  'https://i.giphy.com/media/PAqjdPkJLDsmBRSYUp/giphy.webp',
-  'https://i.giphy.com/media/eIG0HfouRQJQr1wBzz/giphy.webp',
-  'https://media3.giphy.com/media/L71a8LW2UrKwPaWNYM/giphy.gif?cid=ecf05e47rr9qizx2msjucl1xyvuu47d7kf25tqt2lvo024uo&rid=giphy.gif&ct=g',
-  'https://media4.giphy.com/media/AeFmQjHMtEySooOc8K/giphy.gif?cid=ecf05e47qdzhdma2y3ugn32lkgi972z9mpfzocjj6z1ro4ec&rid=giphy.gif&ct=g',
-  'https://i.giphy.com/media/PAqjdPkJLDsmBRSYUp/giphy.webp',
-  'https://i.giphy.com/media/eIG0HfouRQJQr1wBzz/giphy.webp',
-  'https://media3.giphy.com/media/L71a8LW2UrKwPaWNYM/giphy.gif?cid=ecf05e47rr9qizx2msjucl1xyvuu47d7kf25tqt2lvo024uo&rid=giphy.gif&ct=g',
-  'https://media4.giphy.com/media/AeFmQjHMtEySooOc8K/giphy.gif?cid=ecf05e47qdzhdma2y3ugn32lkgi972z9mpfzocjj6z1ro4ec&rid=giphy.gif&ct=g',
-  'https://i.giphy.com/media/PAqjdPkJLDsmBRSYUp/giphy.webp',
+  'https://media.giphy.com/media/bC9czlgCMtw4cj8RgH/giphy.gif',
 ];
 
 export default function Home() {
   // State
   const [walletAddress, setWalletAddress] = useState('');
+  const [inputVal, setInputVal] = useState('');
+  const [gifList, setGifList] = useState([]);
 
   // check if wallet is available
   const checkIfWalletIsAvailable = async () => {
@@ -64,6 +62,19 @@ export default function Home() {
     }
   };
 
+  const onInputChange = (e) => {
+    const { value } = e.target;
+    setInputVal(value);
+  };
+
+  const sendGif = async () => {
+    if (inputVal.length > 0) {
+      console.log('Gif Link: ', inputVal);
+    } else {
+      console.log('Empty Input. Try again');
+    }
+  };
+
   const NotConnectedButton = () => (
     <button
       className={[styles.cta_button, styles.connect_wallet_button].join(' ')}
@@ -75,8 +86,28 @@ export default function Home() {
 
   const renderGIFContainer = () => (
     <div className={styles.connected_container}>
+      <form
+        className={styles.form_elem}
+        onSubmit={(event) => {
+          event.preventDefault();
+          sendGif();
+        }}
+      >
+        <input
+          type="text"
+          placeholder="Enter gif link!"
+          value={inputVal}
+          onChange={onInputChange}
+        />
+        <button
+          type="submit"
+          className={[styles.cta_button, styles.submit_gif_button].join(' ')}
+        >
+          Submit
+        </button>
+      </form>
       <div className={styles.box}>
-        {TEST_GIFs.map((gif) => (
+        {gifList.map((gif) => (
           <div className={styles.gif_item} key={gif}>
             <img src={gif} alt={gif} />
           </div>
@@ -87,10 +118,22 @@ export default function Home() {
 
   // when the page loads, check if wallet is available
   useEffect(() => {
-    window.addEventListener('load', async (event) => {
+    const onLoad = async () => {
       await checkIfWalletIsAvailable();
-    });
+    };
+    window.addEventListener('load', onLoad);
+    return () => window.removeEventListener('load', onLoad);
   }, []);
+
+  useEffect(() => {
+    if (walletAddress.length > 0) {
+      console.log('Fetching Gif list...');
+      // call solana program to get the gif list
+
+      // set state
+      setGifList(TEST_GIFs);
+    }
+  }, [walletAddress]);
 
   return (
     <div className={styles.container}>

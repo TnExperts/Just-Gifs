@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <div>
       <p className={styles.description}>
-        Share your favorite GIFS with the metaverse ✨
+        Share your favorite GIFs with the metaverse ✨
       </p>
       <div className={styles.grid}>
         <Image height="30" width="30" alt="solana" src="/solana.svg" />

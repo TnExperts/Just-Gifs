@@ -4,7 +4,7 @@ import styles from '../../styles/Home.module.css';
 export default function Header() {
   return (
     <div className={styles.header_grid}>
-      <h1 className={styles.title}>Just GIFS</h1>
+      <h1 className={styles.title}>Just GIFs</h1>
       <Image
         className={styles.gif}
         height="70"
