@@ -5,6 +5,10 @@
 /.pnp
 .pnp.js
 /solana
+/solana/node_modules
+/solana/target
+/solana/test-ledger
+
 
 # testing
 /coverage
