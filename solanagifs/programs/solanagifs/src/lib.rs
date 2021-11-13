@@ -12,7 +12,7 @@
 use anchor_lang::prelude::*;
 
 // information for Solana on how to run the program (gen by Anchor)
-declare_id!("Bg6ant5paDG4quk5kte5ZpNiYc7s8J3F2AJcJrGnjVB9");
+declare_id!("2TF5Aa9q14npHW2dJeQeZi3sRBGibdi1vXcKyjuGM8nC");
 
 #[program] //let's frontend client call Solana program via fetch req
 pub mod solanagif { // rust module
