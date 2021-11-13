@@ -1,12 +1,12 @@
-[programs.localnet]
-solanagifs = "2TF5Aa9q14npHW2dJeQeZi3sRBGibdi1vXcKyjuGM8nC"
+[programs.devnet]
+solanagifs = "2KJ3ACmu7Us62Z5hhMRJxZydPXE9xEr8t7VNd5fEtJxE"
 
 [registry]
 url = "https://anchor.projectserum.com"
 
 [provider]
-cluster = "localnet"
+cluster = "devnet"
 wallet = "/Users/tapabratadey/.config/solana/id.json"
 
 [scripts]
-test = "yarn run mocha -t 1000000 tests/"
+test = "node tests/solanagifs.js" 
