@@ -8,6 +8,33 @@ import Description from './components/description';
 import RustSVG from './components/rust-svg';
 import Main from './components/main';
 import { useEffect, useState } from 'react';
+import idl from './helper/idl.json';
+import kp from './helper/keypair.json';
+
+import { Connection, PublicKey, clusterApiUrl } from '@solana/web3.js';
+import { Program, Provider, web3 } from '@project-serum/anchor';
+
+// SystemProgram is a reference to the Solana runtime!
+const { SystemProgram, Keypair } = web3;
+
+// Create a keypair for the account that will hold the GIF data.
+// let baseAccount = Keypair.generate();
+
+//
+const arr = Object.values(kp._keypair.secretKey);
+const secret = new Uint8Array(arr);
+const baseAccount = web3.Keypair.fromSecretKey(secret);
+
+// Get our program's id form the IDL file.
+const programID = new PublicKey(idl.metadata.address);
+
+// Set our network to devnet.
+const network = clusterApiUrl('devnet');
+
+// Control's how we want to acknowledge when a transaction is "done".
+const opts = {
+  preflightCommitment: 'processed',
+};
 
 const TEST_GIFs = [
   'https://media.giphy.com/media/IwAZ6dvvvaTtdI8SD5/giphy.gif',
@@ -67,11 +94,60 @@ export default function Home() {
     setInputVal(value);
   };
 
+  const getProvider = () => {
+    const connection = new Connection(network, opts.preflightCommitment);
+    const provider = new Provider(
+      connection,
+      window.solana,
+      opts.preflightCommitment
+    );
+    return provider;
+  };
+
+  const createGifAccount = async () => {
+    try {
+      const provider = getProvider();
+      const program = new Program(idl, programID, provider);
+      console.log('ping');
+      await program.rpc.startStuffOff({
+        accounts: {
+          baseAccount: baseAccount.publicKey,
+          user: provider.wallet.publicKey,
+          systemProgram: SystemProgram.programId,
+        },
+        signers: [baseAccount],
+      });
+      console.log(
+        'Created a new BaseAccount w/ address:',
+        baseAccount.publicKey.toString()
+      );
+      await getGifList();
+    } catch (error) {
+      console.log('Error creating BaseAccount account:', error);
+    }
+  };
+
   const sendGif = async () => {
-    if (inputVal.length > 0) {
-      console.log('Gif Link: ', inputVal);
-    } else {
-      console.log('Empty Input. Try again');
+    if (inputVal.length === 0) {
+      console.log('No gif link given!');
+      return;
+    }
+    console.log('Gif link:', inputVal);
+    try {
+      const provider = getProvider();
+      const program = new Program(idl, programID, provider);
+
+      await program.rpc.addGif(inputVal, {
+        accounts: {
+          baseAccount: baseAccount.publicKey,
+          user: provider.wallet.publicKey,
+        },
+      });
+      console.log('GIF successfully sent to program', inputVal);
+
+      await getGifList();
+    } catch (error) {
+      console.log('Error sending GIF:', error);
     }
   };
 
@@ -84,37 +160,71 @@ export default function Home() {
     </button>
   );
 
-  const renderGIFContainer = () => (
-    <div className={styles.connected_container}>
-      <form
-        className={styles.form_elem}
-        onSubmit={(event) => {
-          event.preventDefault();
-          sendGif();
-        }}
-      >
-        <input
-          type="text"
-          placeholder="Enter gif link!"
-          value={inputVal}
-          onChange={onInputChange}
-        />
-        <button
-          type="submit"
-          className={[styles.cta_button, styles.submit_gif_button].join(' ')}
-        >
-          Submit
-        </button>
-      </form>
-      <div className={styles.box}>
-        {gifList.map((gif) => (
-          <div className={styles.gif_item} key={gif}>
-            <img src={gif} alt={gif} />
+  const renderGIFContainer = () => {
+    // when the program account is not initialized
+    if (gifList === null) {
+      return (
+        <div className={styles.connected_container}>
+          <button
+            className={[styles.cta_button, styles.submit_gif_button].join(' ')}
+            onClick={createGifAccount}
+          >
+            Do One-Time Initialization For GIF Program Account
+          </button>
+        </div>
+      );
+    } else {
+      return (
+        <div className={styles.connected_container}>
+          <form
+            className={styles.form_elem}
+            onSubmit={(event) => {
+              event.preventDefault();
+              sendGif();
+            }}
+          >
+            <input
+              type="text"
+              placeholder="Enter gif link!"
+              value={inputVal}
+              onChange={onInputChange}
+            />
+            <button
+              type="submit"
+              className={[styles.cta_button, styles.submit_gif_button].join(
+                ' '
+              )}
+            >
+              Submit
+            </button>
+          </form>
+          <div className={styles.box}>
+            {gifList.map((item, index) => (
+              <div className={styles.gif_item} key={index}>
+                <img src={item.gifLink} />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-    </div>
-  );
+        </div>
+      );
+    }
+  };
+
+  const getGifList = async () => {
+    try {
+      const provider = getProvider();
+      const program = new Program(idl, programID, provider);
+      const account = await program.account.baseAccount.fetch(
+        baseAccount.publicKey
+      );
+
+      console.log('Got the account', account);
+      setGifList(account.gifList);
+    } catch (error) {
+      console.log('Error in getGifList: ', error);
+      setGifList(null);
+    }
+  };
 
   // when the page loads, check if wallet is available
   useEffect(() => {
@@ -126,12 +236,12 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (walletAddress.length > 0) {
+    if (walletAddress) {
       console.log('Fetching Gif list...');
       // call solana program to get the gif list
-
+      getGifList();
       // set state
-      setGifList(TEST_GIFs);
+      // setGifList(TEST_GIFs);
     }
   }, [walletAddress]);
 
