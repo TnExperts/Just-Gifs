@@ -1,0 +1,61 @@
+[0m[38;5;8m[[0m2021-11-13T10:34:00.314290000Z [0m[32mINFO [0m solana_test_validator[0m[38;5;8m][0m solana-validator 1.8.2 (src:devbuild; feat:52865992)
+[0m[38;5;8m[[0m2021-11-13T10:34:00.314517000Z [0m[32mINFO [0m solana_test_validator[0m[38;5;8m][0m Starting validator with: ArgsOs {
+        inner: [
+            "solana-test-validator",
+            "--no-bpf-jit",
+        ],
+    }
+[0m[38;5;8m[[0m2021-11-13T10:34:00.315034000Z [0m[33mWARN [0m solana_perf[0m[38;5;8m][0m CUDA is disabled
+[0m[38;5;8m[[0m2021-11-13T10:34:00.327410000Z [0m[32mINFO [0m solana_faucet::faucet[0m[38;5;8m][0m Faucet started. Listening on: 0.0.0.0:9900
+[0m[38;5;8m[[0m2021-11-13T10:34:00.327427000Z [0m[32mINFO [0m solana_faucet::faucet[0m[38;5;8m][0m Faucet account address: 9uE6rK9RNJFsuoTjwqzFb77Y87KrqTDcjo1hhwQKizhp
+[0m[38;5;8m[[0m2021-11-13T10:34:00.350052000Z [0m[32mINFO [0m solana_ledger::blockstore[0m[38;5;8m][0m Maximum open file descriptors: 500000
+[0m[38;5;8m[[0m2021-11-13T10:34:00.350074000Z [0m[32mINFO [0m solana_ledger::blockstore[0m[38;5;8m][0m Opening database at "test-ledger/rocksdb"
+[0m[38;5;8m[[0m2021-11-13T10:34:00.575309000Z [0m[32mINFO [0m solana_ledger::blockstore[0m[38;5;8m][0m "test-ledger/rocksdb" open took 225ms
+[0m[38;5;8m[[0m2021-11-13T10:34:00.585771000Z [0m[32mINFO [0m solana_metrics::metrics[0m[38;5;8m][0m metrics disabled: SOLANA_METRICS_CONFIG: environment variable not found
+[0m[38;5;8m[[0m2021-11-13T10:34:00.586124000Z [0m[32mINFO [0m solana_metrics::metrics[0m[38;5;8m][0m datapoint: shred_insert_is_full total_time_ms=0i slot=0i last_index=2i num_repaired=0i num_recovered=0i
+[0m[38;5;8m[[0m2021-11-13T10:34:00.670613000Z [0m[32mINFO [0m solana_runtime::hardened_unpack[0m[38;5;8m][0m Extracting "test-ledger/genesis.tar.bz2"...
+[0m[38;5;8m[[0m2021-11-13T10:34:00.689536000Z [0m[32mINFO [0m solana_runtime::hardened_unpack[0m[38;5;8m][0m unpacked 10 entries total
+[0m[38;5;8m[[0m2021-11-13T10:34:00.689563000Z [0m[32mINFO [0m solana_runtime::hardened_unpack[0m[38;5;8m][0m Extracted "test-ledger/genesis.tar.bz2" in 18.715875ms
+[0m[38;5;8m[[0m2021-11-13T10:34:00.693250000Z [0m[33mWARN [0m solana_core::validator[0m[38;5;8m][0m identity: GLE8EstGeT2YxWzL9egkLtkXhKMKjQmuo45zKYeJ6XZt
+[0m[38;5;8m[[0m2021-11-13T10:34:00.693268000Z [0m[33mWARN [0m solana_core::validator[0m[38;5;8m][0m vote account: 4uVPsFSFPNZkuyjZSyfXnvcQrwXxgbLkJYzB3fSnLHKS
+[0m[38;5;8m[[0m2021-11-13T10:34:00.693282000Z [0m[33mWARN [0m solana_core::validator[0m[38;5;8m][0m authorized voter: 4uVPsFSFPNZkuyjZSyfXnvcQrwXxgbLkJYzB3fSnLHKS
+[0m[38;5;8m[[0m2021-11-13T10:34:00.693290000Z [0m[32mINFO [0m solana_core::validator[0m[38;5;8m][0m Initializing sigverify...
+[0m[38;5;8m[[0m2021-11-13T10:34:00.693295000Z [0m[32mINFO [0m solana_core::validator[0m[38;5;8m][0m Done.
+[0m[38;5;8m[[0m2021-11-13T10:34:00.693302000Z [0m[32mINFO [0m solana_core::validator[0m[38;5;8m][0m Cleaning accounts paths..
+[0m[38;5;8m[[0m2021-11-13T10:34:00.708905000Z [0m[32mINFO [0m solana_core::validator[0m[38;5;8m][0m done. clean_accounts_paths took 15ms
+[0m[38;5;8m[[0m2021-11-13T10:34:00.708945000Z [0m[32mINFO [0m solana_core::validator[0m[38;5;8m][0m loading ledger from "test-ledger"...
+[0m[38;5;8m[[0m2021-11-13T10:34:00.711580000Z [0m[32mINFO [0m solana_core::validator[0m[38;5;8m][0m genesis hash: 8S73WWnDuCjFaatYXnXwqDWeSUgFUoJaw2sfwuZwXTt5
+[0m[38;5;8m[[0m2021-11-13T10:34:00.711607000Z [0m[32mINFO [0m solana_ledger::blockstore[0m[38;5;8m][0m Maximum open file descriptors: 500000
+[0m[38;5;8m[[0m2021-11-13T10:34:00.711613000Z [0m[32mINFO [0m solana_ledger::blockstore[0m[38;5;8m][0m Opening database at "test-ledger/rocksdb"
+[0m[38;5;8m[[0m2021-11-13T10:34:00.873967000Z [0m[32mINFO [0m solana_ledger::blockstore[0m[38;5;8m][0m "test-ledger/rocksdb" open took 162ms
+[0m[38;5;8m[[0m2021-11-13T10:34:00.875877000Z [0m[32mINFO [0m solana_ledger::bank_forks_utils[0m[38;5;8m][0m Initializing snapshot path: "test-ledger/snapshot"
+[0m[38;5;8m[[0m2021-11-13T10:34:00.879806000Z [0m[32mINFO [0m solana_ledger::bank_forks_utils[0m[38;5;8m][0m Loading snapshot package: "test-ledger/snapshot-47000-8RnSUZoiuUPHfS6xpYZmp49s9bMbgJQqiotbepXKbhs1.tar"
+[0m[38;5;8m[[0m2021-11-13T10:34:00.891624000Z [0m[32mINFO [0m solana_runtime::hardened_unpack[0m[38;5;8m][0m unpacked 17 entries total
+[0m[38;5;8m[[0m2021-11-13T10:34:00.893206000Z [0m[32mINFO [0m solana_runtime::hardened_unpack[0m[38;5;8m][0m unpacked 16 entries total
+[0m[38;5;8m[[0m2021-11-13T10:34:00.899277000Z [0m[32mINFO [0m solana_runtime::snapshot_utils[0m[38;5;8m][0m snapshot untar took 18ms
+[0m[38;5;8m[[0m2021-11-13T10:34:00.899417000Z [0m[32mINFO [0m solana_runtime::snapshot_utils[0m[38;5;8m][0m snapshot version: 1.2.0
+[0m[38;5;8m[[0m2021-11-13T10:34:00.899918000Z [0m[32mINFO [0m solana_runtime::snapshot_utils[0m[38;5;8m][0m Loading bank from /Users/tapabratadey/Projects/just-gifs/solanagif/test-ledger/snapshot/tmp-snapshot-frAw2p/snapshots/47000/47000
+[0m[38;5;8m[[0m2021-11-13T10:34:00.909188000Z [0m[32mINFO [0m solana_metrics::metrics[0m[38;5;8m][0m datapoint: reconstruct_accountsdb_from_fields() accountsdb-notify-at-start-us=1i
+[0m[38;5;8m[[0m2021-11-13T10:34:00.911727000Z [0m[32mINFO [0m solana_metrics::metrics[0m[38;5;8m][0m datapoint: generate_index total_us=2413i scan_stores_us=224i insertion_time_us=310i min_bin_size=2i max_bin_size=28i total_items=98i
+thread 'main' panicked at 'assertion failed: `(left == right)`
+  left: `1636758254`,
+ right: `1636799640`', runtime/src/bank.rs:1527:9
+stack backtrace:
+   0: rust_begin_unwind
+             at /rustc/9bc8c42bb2f19e745a63f3445f1ac248fb015e53/library/std/src/panicking.rs:493:5
+   1: core::panicking::panic_fmt
+             at /rustc/9bc8c42bb2f19e745a63f3445f1ac248fb015e53/library/core/src/panicking.rs:92:14
+   2: core::panicking::assert_failed::inner
+             at /rustc/9bc8c42bb2f19e745a63f3445f1ac248fb015e53/library/core/src/panicking.rs:135:21
+   3: core::panicking::assert_failed
+   4: solana_runtime::bank::Bank::new_from_fields
+   5: solana_runtime::serde_snapshot::bank_from_stream
+   6: solana_runtime::snapshot_utils::rebuild_bank_from_snapshots
+   7: solana_runtime::snapshot_utils::bank_from_archive
+   8: solana_ledger::bank_forks_utils::load
+   9: solana_core::validator::new_banks_from_ledger
+  10: solana_core::validator::Validator::new
+  11: solana_core::test_validator::TestValidator::start
+  12: solana_core::test_validator::TestValidatorGenesis::start_with_mint_address
+  13: solana_test_validator::main
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
